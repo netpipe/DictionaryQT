@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QCoreApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -42,7 +43,7 @@ MainWindow::~MainWindow() {
 
 bool MainWindow::connectToDatabase() {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("Dictionary.db"); // Path to your SQLite DB
+    db.setDatabaseName(QCoreApplication::applicationDirPath() +"/Dictionary.db"); // Path to your SQLite DB
 
     return db.open();
 }
